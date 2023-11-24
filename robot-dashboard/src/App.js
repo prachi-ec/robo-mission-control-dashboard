@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 import ImageUploader3 from './attempt3';
-
+import MissionButtons from './missionButton';
 function App() {
   return (
     <div className="App">
@@ -9,6 +9,7 @@ function App() {
       {/* <Robomap /> */}
       <ImageUploader3/>
       {/* <ImageTest imagePath={floorMapImg}/> */}
+      <MissionButtons/>
     </div>
   );
 }
