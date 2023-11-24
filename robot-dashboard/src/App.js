@@ -1,12 +1,14 @@
 // src/App.js
 import React from 'react';
-import Robomap from './robomap';
+import ImageUploader3 from './attempt3';
 
 function App() {
   return (
     <div className="App">
       <h1>Robot Dashboard</h1>
-      <Robomap />
+      {/* <Robomap /> */}
+      <ImageUploader3/>
+      {/* <ImageTest imagePath={floorMapImg}/> */}
     </div>
   );
 }
