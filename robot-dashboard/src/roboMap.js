@@ -60,7 +60,7 @@ const RoboMap = () => {
     const resolution = 0.050000;
     const origin = [-4.142630, -12.520201, 0.000000];
 
-    const canvasX = canvasRef.current.width - (coord.x - origin[0]) / resolution;
+    const canvasX = (coord.x - origin[0]) / resolution;
     const canvasY = canvasRef.current.height - (coord.y - origin[1]) / resolution;
     return { x: canvasX, y: canvasY };
   };
