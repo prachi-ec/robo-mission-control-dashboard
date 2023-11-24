@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './MissionButton.css';
 
 const MissionButtons = () => {
   const handleButtonClick = async (mission_name) => {
@@ -21,10 +22,10 @@ const MissionButtons = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => handleButtonClick('mission1')}>Mission 1</button>
-      <button onClick={() => handleButtonClick('mission2')}>Mission 2</button>
-      <button onClick={() => handleButtonClick('mission3')}>Mission 3</button>
+    <div className="mission-buttons-container">
+      <button className='mission-button' onClick={() => handleButtonClick('mission1')}>Mission 1</button>
+      <button className='mission-button' onClick={() => handleButtonClick('mission2')}>Mission 2</button>
+      <button className='mission-button' onClick={() => handleButtonClick('mission3')}>Mission 3</button>
     </div>
   );
 };
