@@ -4,9 +4,22 @@ The react based UI to view motion of robot plotted using webgl on the given imag
 ## Setup:
 
 1. Project uses npm as package manager and expects it to be present on the system.
-2. After cloning repo, do `>>npm install` to sync in the dependencies.
+2. After cloning repo, go to robot-dashboard 
+
+        `>>cd robot-dashboard`
+
+   Now, we need to sync in the dependecies, use:
+        
+        `>>npm install` 
+        
+   If this fails, try:
+        
+        `>>npm init` 
+        
+        `>>npm install` 
+
 3. Run `>>npm run build`. If all goes well, we will have a build directory which will be used to host the UI via nginx.
-4. Expecting nginx to be installed in the syste. Copy the path of the build directory and assign it to the value of the server/root field in nginx.conf.
+4. Expecting nginx to be installed in the system. Copy the path of the generated build directory (root/path/robo-mission-control-dashboard/robot-dashboard/build/) and assign it to the value of the server/root field in nginx.conf.
         
       
             server {
