@@ -6,20 +6,28 @@ The react based UI to view motion of robot plotted using webgl on the given imag
 1. Project uses npm as package manager and expects it to be present on the system.
 2. After cloning repo, go to robot-dashboard 
 
-        `>>cd robot-dashboard`
+        >>cd robot-dashboard
+
+   if you have existing node_modules or package-lock.json, then remove them:
+
+        >>rm -rf node_modules
+   
+        >>rm package-lock.json
+
+        >>npm cache clean --force
 
    Now, we need to sync in the dependecies, use:
         
-        `>>npm install` 
+        >>npm install 
         
    If this fails, try:
         
-        `>>npm init` 
+        >>npm init
         
-        `>>npm install` 
+        >>npm install
 
-3. Run `>>npm run build`. If all goes well, we will have a build directory which will be used to host the UI via nginx.
-4. Expecting nginx to be installed in the system. Copy the path of the generated build directory (root/path/robo-mission-control-dashboard/robot-dashboard/build/) and assign it to the value of the server/root field in nginx.conf.
+4. Run `>>npm run build`. If all goes well, we will have a build directory which will be used to host the UI via nginx.
+5. Expecting nginx to be installed in the system. Copy the path of the generated build directory (root/path/robo-mission-control-dashboard/robot-dashboard/build/) and assign it to the value of the server/root field in nginx.conf.
         
       
             server {
@@ -36,7 +44,7 @@ The react based UI to view motion of robot plotted using webgl on the given imag
                      try_files $uri $uri/ /index.html;
 
             }
-5. Run `>>start nginx` and go to http://localhost:80/ (given that's the port set to listen in nginx.conf). 
+6. Run `>>start nginx` and go to http://localhost:80/ (given that's the port set to listen in nginx.conf). 
 You should be able to see the Map and three buttons for each mission. 
 ![image](https://github.com/prachi-ec/robo-mission-control-dashboard/assets/71262691/f88d1562-ad23-4f79-9981-379ebfa75279)
 
