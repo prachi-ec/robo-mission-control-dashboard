@@ -1,21 +1,21 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from "react";
 
 const RoboMap = () => {
   const canvasRef = useRef(null);
   const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:8000/ws/coordinates/');
+    const socket = new WebSocket("ws://localhost:8000/ws/coordinates/");
 
     socket.addEventListener("open", (event) => {
       socket.send("Hello Server!");
     });
 
-    socket.addEventListener('message', (event) => {
+    socket.addEventListener("message", (event) => {
       const stringWithoutQuotes = event.data.slice(1, -1); // Remove the surrounding single quotes
       const correctedData = stringWithoutQuotes.replace(/'/g, '"');
       const newCoordinate = JSON.parse(correctedData);
-      console.log(newCoordinate)
+      console.log(newCoordinate);
       setCoordinates((prevCoordinates) => [...prevCoordinates, newCoordinate]);
     });
 
@@ -25,18 +25,19 @@ const RoboMap = () => {
   }, []);
 
   useEffect(() => {
-    const predefinedFilePath = process.env.PUBLIC_URL + '/map_peer_assignment-1.jpg';
+    const predefinedFilePath =
+      process.env.PUBLIC_URL + "/map_peer_assignment-1.jpg";
 
     const img = new Image();
     img.onload = () => {
       const canvas = canvasRef.current;
       canvas.width = img.width;
       canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0);
 
       // Plot coordinates on the canvas
-      coordinates.forEach(coord => {
+      coordinates.forEach((coord) => {
         plotCoordinate(ctx, coord);
       });
     };
@@ -48,20 +49,21 @@ const RoboMap = () => {
     const { x, y } = convertCoordinateToCanvas(coord);
     ctx.beginPath();
     ctx.arc(x, y, 5, 0, 2 * Math.PI, false);
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = "red";
     ctx.fill();
     ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
+    ctx.strokeStyle = "black";
     ctx.stroke();
   };
 
   const convertCoordinateToCanvas = (coord) => {
     // Convert world coordinates to canvas coordinates based on image specs
-    const resolution = 0.050000;
-    const origin = [-4.142630, -12.520201, 0.000000];
+    const resolution = 0.05;
+    const origin = [-4.14263, -12.520201, 0.0];
 
     const canvasX = (coord.x - origin[0]) / resolution;
-    const canvasY = canvasRef.current.height - (coord.y - origin[1]) / resolution;
+    const canvasY =
+      canvasRef.current.height - (coord.y - origin[1]) / resolution;
     return { x: canvasX, y: canvasY };
   };
 
